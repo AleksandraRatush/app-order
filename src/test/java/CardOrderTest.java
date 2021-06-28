@@ -32,7 +32,8 @@ public class CardOrderTest {
                 .click();
         $("button")
                 .click();
-        $(byText("Поле обязательно для заполнения")).shouldBe(Condition.visible);
+        $("[data-test-id='name'].input_invalid .input__sub").shouldBe(Condition.visible)
+                .shouldHave(Condition.exactText("Поле обязательно для заполнения"));
 
     }
 
@@ -45,7 +46,8 @@ public class CardOrderTest {
                 .click();
         $("button")
                 .click();
-        $(byText("Поле обязательно для заполнения")).shouldBe(Condition.visible);
+        $("[data-test-id='phone'].input_invalid .input__sub").shouldBe(Condition.visible)
+                .shouldHave(Condition.exactText("Поле обязательно для заполнения"));
 
     }
 
@@ -58,9 +60,9 @@ public class CardOrderTest {
                 .setValue("+79378212612");
         $("button")
                 .click();
-        $(byText("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй")).shouldBe(
-                Condition.cssValue("color", "rgba(255, 92, 92, 1)"));
-
+        $("[data-test-id='agreement'].input_invalid .checkbox__text")
+                .shouldBe(Condition.visible)
+                .shouldHave(Condition.exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй"));
     }
 
     @Test
@@ -74,7 +76,8 @@ public class CardOrderTest {
                 .click();
         $("button")
                 .click();
-        $(byText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.")).shouldBe(Condition.visible);
+        $("[data-test-id='name'].input_invalid .input__sub").shouldBe(Condition.visible)
+                .shouldHave(Condition.exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
     }
 
     @Test
@@ -88,7 +91,9 @@ public class CardOrderTest {
                 .click();
         $("button")
                 .click();
-        $(byText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.")).shouldBe(Condition.visible);
+        $("[data-test-id='phone'].input_invalid .input__sub").shouldBe(Condition.visible)
+                .shouldHave(Condition.exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+
     }
 
 
